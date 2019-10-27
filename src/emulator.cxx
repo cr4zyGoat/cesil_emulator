@@ -1,14 +1,16 @@
 #include "emulator.h"
 #include "utilities.h"
 
-Emulator::Emulator(string filename)
+Emulator::Emulator(std::string filename)
 {
-    string command = "radare2 -q0 " + filename;
+    this->emulation_finished = false;
+    
+    std::string command = "radare2 -q0 " + filename;
     this->r2 = r2pipe_open(command.c_str());
-    this->setup();
+    this->setup_radare();
 }
 
-void Emulator::setup()
+void Emulator::setup_radare()
 {
     this->r2cmd("aaaa");
     this->r2cmd("e io.cache=1");
@@ -26,9 +28,18 @@ Json::Value Emulator::r2cmdj(const char *command)
     return UTILITIES_H::string_to_json(str);
 }
 
+Instruction* Emulator::get_current_instruction()
+{
+    Json::Value data = this->r2cmdj("pdj 1 @eip")[0];
+    return new Instruction(data);
+}
+
 void Emulator::run()
 {
     printf("%s\n", this->r2cmd("i"));
     Json::Value instructions = this->r2cmdj("pdfj");
-    printf("Result name: %s\n", instructions.get("jhfeuishfisuehfsueifh", "name").asCString());
+    this->current_instruction = this->get_current_instruction();
+    printf("Result name: %s\n", instructions.get("name", "name").asCString());
+    printf("First instruction: %s\n", this->current_instruction->get_disasm().c_str());
+    printf("First offset: %lu\n", this->current_instruction->get_offset());
 }

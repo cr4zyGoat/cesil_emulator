@@ -23,7 +23,7 @@ compile:
 # Compile & test the application
 test: compile
 	@echo "Testing application..."
-	./$(BINARY) /usr/bin/ls
+	./$(BINARY) samples/crackme0x02.exe
 
 # Remove binaries & objects
 clean: 

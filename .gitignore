@@ -35,6 +35,9 @@
 ### VSCode ###
 .vscode/*
 
+### Samples ###
+samples/*
+
 ### Result binaries ###
 cesil_emulator
 
