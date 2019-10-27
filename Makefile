@@ -1,10 +1,15 @@
 CC = g++
 
-CFLAGS = $(shell pkg-config --cflags r_socket)
-LIBS =  $(shell pkg-config --libs r_socket)
+PACKAGES = \
+	r_socket \
+	jsoncpp
 
-HEADERS = $(wildcard *.h)
-SOURCES = $(wildcard *.cxx)
+CFLAGS = $(shell pkg-config --cflags $(PACKAGES))
+LIBS =  $(shell pkg-config --libs $(PACKAGES))
+
+SRCDIR = src
+HEADERS = $(wildcard $(SRCDIR)/*.h)
+SOURCES = $(wildcard $(SRCDIR)/*.cxx)
 BINARY = cesil_emulator
 
 # Make default option
