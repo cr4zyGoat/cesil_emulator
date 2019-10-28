@@ -8,6 +8,7 @@ Emulator::Emulator(std::string filename)
     std::string command = "radare2 -q0 " + filename;
     this->r2 = r2pipe_open(command.c_str());
     this->setup_radare();
+    this->setup_relocation_table();
 }
 
 void Emulator::setup_radare()
@@ -15,6 +16,12 @@ void Emulator::setup_radare()
     this->r2cmd("aaaa");
     this->r2cmd("e io.cache=1");
     this->r2cmd("aeim");
+}
+
+void Emulator::setup_relocation_table()
+{
+    Json::Value relocations = this->r2cmdj("irj");
+    this->relocation_table = new RelocationTable(relocations);
 }
 
 char* Emulator::r2cmd(const char *command)
