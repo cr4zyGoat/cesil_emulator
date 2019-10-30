@@ -7,9 +7,13 @@ PACKAGES = \
 CFLAGS = $(shell pkg-config --cflags $(PACKAGES))
 LIBS =  $(shell pkg-config --libs $(PACKAGES))
 
+
+H = .h
+C = .cxx
 SRCDIR = src
-HEADERS = $(wildcard $(SRCDIR)/*.h)
-SOURCES = $(wildcard $(SRCDIR)/*.cxx)
+APIDIR = src/api
+HEADERS = $(wildcard $(SRCDIR)/*$(H) $(APIDIR)/*$(H))
+SOURCES = $(wildcard $(SRCDIR)/*$(C) $(APIDIR)/*$(C))
 BINARY = cesil_emulator
 
 # Make default option
