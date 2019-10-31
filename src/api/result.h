@@ -17,7 +17,7 @@ public:
     static const int NUMBER = 1;
     static const int EXIT_PROCESS = 99;
 
-    FunctionResult(const std::string target, const int type, const std::string value, bool to_reference);
+    FunctionResult(std::string target, const int type, const std::string value, bool to_reference);
     std::string get_target();
     int get_type();
     auto get_value();

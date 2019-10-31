@@ -1,6 +1,7 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
+#include <string>
 #include <json/json.h>
 
 #define INVALID_INSTRUCTION "INVALID"
