@@ -1,8 +1,9 @@
 #include "emulator.h"
 
-Emulator::Emulator(Radare *r2)
+Emulator::Emulator(Radare *r2, IApi *apis)
 {
     this->r2 = r2;
+    this->apis = apis;
     this->relocations_table = new RelocationTable(r2->get_relocations());
     this->emulation_finished = false;
 }
