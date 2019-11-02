@@ -7,20 +7,20 @@ class FunctionResult
 {
 private:
     std::string target;
-    int type;
     std::string value;
+    int type;
     bool to_reference;
 
 
 public:
-    static const int BYTES = 0;
-    static const int NUMBER = 1;
-    static const int EXIT_PROCESS = 99;
+    static const int BYTES;
+    static const int NUMBER;
+    static const int EXIT_PROCESS;
 
-    FunctionResult(std::string target, const int type, const std::string value, bool to_reference);
+    FunctionResult(std::string target, const std::string value, const int type, bool to_reference);
     std::string get_target();
+    std::string get_value();
     int get_type();
-    auto get_value();
     bool is_reference();
 
 };

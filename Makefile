@@ -1,4 +1,5 @@
 CC = g++
+STD = c++17
 
 PACKAGES = \
 	r_socket \
@@ -22,7 +23,7 @@ all: compile
 # Compile the binary
 compile:
 	@echo "Creating $(BINARY) binary..."
-	$(CC) $(HEADERS) $(SOURCES) -o $(BINARY) $(CFLAGS) $(LIBS)
+	$(CC) -std=$(STD) $(HEADERS) $(SOURCES) -o $(BINARY) $(CFLAGS) $(LIBS)
 
 # Compile & test the application
 test: compile

@@ -1,10 +1,8 @@
 #ifndef RELOCATION_H
 #define RELOCATION_H
 
+#include <string>
 #include <json/json.h>
-
-#define INVALID_RELOCATION "INVALID"
-#define INVALID_ADDRESS 0
 
 class Relocation
 {
@@ -14,6 +12,9 @@ private:
     unsigned long vaddr;
 
 public:
+    static const std::string INVALID_RELOCATION;
+    static const unsigned long INVALID_ADDRESS;
+
     Relocation(const Json::Value data);
     std::string get_name();
     std::string get_type();
