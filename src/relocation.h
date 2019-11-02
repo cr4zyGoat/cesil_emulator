@@ -24,7 +24,7 @@ public:
 class RelocationTable
 {
 private:
-    std::vector<Relocation> relocations;
+    std::vector<Relocation*> relocations;
 
 public:
     RelocationTable(const Json::Value data);
