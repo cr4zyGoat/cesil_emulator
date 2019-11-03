@@ -1,5 +1,5 @@
-#ifndef API_ARGUMENT_H
-#define API_ARGUMENT_H
+#ifndef API_LOGIC_ARGUMENT_H
+#define API_LOGIC_ARGUMENT_H
 
 #include <string>
 
@@ -18,8 +18,9 @@ public:
     static const int ADDRESS;
     static const int UNDEFINED;
 
-    FunctionArgument(const unsigned long address, const std::string name, const int type);
+    FunctionArgument(const std::string name, const int type);
     unsigned long get_address();
+    void set_address(unsigned long address);
     std::string get_name();
     std::string get_value();
     void set_value(std::string value);

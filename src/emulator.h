@@ -6,7 +6,7 @@
 #include "radare.h"
 #include "instruction.h"
 #include "relocation.h"
-#include "api/interface.h"
+#include "api_logic/interface.h"
 
 class Emulator
 {

@@ -8,22 +8,33 @@ PACKAGES = \
 CFLAGS = $(shell pkg-config --cflags $(PACKAGES))
 LIBS =  $(shell pkg-config --libs $(PACKAGES))
 
-
 H = .h
 C = .cxx
 SRCDIR = src
-APIDIR = src/api
-HEADERS = $(wildcard $(SRCDIR)/*$(H) $(APIDIR)/*$(H))
-SOURCES = $(wildcard $(SRCDIR)/*$(C) $(APIDIR)/*$(C))
+APILOGDIR = $(SRCDIR)/api_logic
+APIIMPDIR = $(SRCDIR)/api_implementations
 BINARY = cesil_emulator
+
+HEADERS = $(wildcard \
+	$(SRCDIR)/*$(H) \
+	$(APILOGDIR)/*$(H) \
+	$(APIIMPDIR)/*$(H) \
+)
+
+SOURCES = $(wildcard \
+	$(SRCDIR)/*$(C) \
+	$(APILOGDIR)/*$(C) \
+	$(APIIMPDIR)/*$(C) \
+)
 
 # Make default option
 all: compile
 
 # Compile the binary
 compile:
-	@echo "Creating $(BINARY) binary..."
+	@echo "Creating binary files..."
 	$(CC) -std=$(STD) $(HEADERS) $(SOURCES) -o $(BINARY) $(CFLAGS) $(LIBS)
+	@echo "Binary executable $(BINARY) created ;)"
 
 # Compile & test the application
 test: compile

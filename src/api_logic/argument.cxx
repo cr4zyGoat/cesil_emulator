@@ -5,14 +5,17 @@ const int FunctionArgument::NUMBER = 1;
 const int FunctionArgument::ADDRESS = 2;
 const int FunctionArgument::UNDEFINED = 99;
 
-FunctionArgument::FunctionArgument(const unsigned long address, const std::string name, const int type) {
-    this->address = address;
+FunctionArgument::FunctionArgument(const std::string name, const int type) {
     this->name = name;
     this->type = type;
 };
 
 unsigned long FunctionArgument::get_address() {
     return this->address;
+};
+
+void FunctionArgument::set_address(unsigned long address) {
+    this->address = address;
 };
 
 std::string FunctionArgument::get_name() {

@@ -11,6 +11,10 @@ FunctionResult::FunctionResult(std::string target, const std::string value, cons
     this->to_reference = to_reference;
 };
 
+FunctionResult::FunctionResult(const std::string value, const int type) {
+    FunctionResult("eax", value, type, false);
+}
+
 std::string FunctionResult::get_target() {
     return this->target;   
 };

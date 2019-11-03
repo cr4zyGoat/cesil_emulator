@@ -25,6 +25,6 @@ RelocationTable::RelocationTable(const Json::Value data) {
     Relocation *relocation;
     for (Json::Value jrelocation : data) {
         relocation = new Relocation(jrelocation); 
-        this->relocations.insert(this->relocations.end(), relocation);
+        this->relocations.push_back(relocation);
     }
 };
