@@ -20,6 +20,8 @@ public:
     Radare(const std::string filename);
     Json::Value get_current_instruction();
     Json::Value get_relocations();
+    char* get_register(const std::string reg);
+    void execute_return();
 
 };
 
