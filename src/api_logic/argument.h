@@ -13,10 +13,12 @@ private:
 
 
 public:
-    static const int STRING;
-    static const int NUMBER;
-    static const int ADDRESS;
-    static const int UNDEFINED;
+    enum {
+        STRING = 0,
+        NUMBER = 1,
+        ADDRESS = 2,
+        UNDEFINED = 99
+    };
 
     FunctionArgument(const std::string name, const int type);
     unsigned long get_address();

@@ -29,6 +29,8 @@ private:
 
 public:
     RelocationTable(const Json::Value data);
+    bool contains_vaddr(const unsigned long address);
+    Relocation* get_relocation_by_vaddr(const unsigned long address);
 
 };
 

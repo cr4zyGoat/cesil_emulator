@@ -1,10 +1,5 @@
 #include "argument.h"
 
-const int FunctionArgument::STRING = 0;
-const int FunctionArgument::NUMBER = 1;
-const int FunctionArgument::ADDRESS = 2;
-const int FunctionArgument::UNDEFINED = 99;
-
 FunctionArgument::FunctionArgument(const std::string name, const int type) {
     this->name = name;
     this->type = type;

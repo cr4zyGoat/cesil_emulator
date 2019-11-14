@@ -17,7 +17,10 @@ private:
     RelocationTable *relocations_table;
     bool emulation_finished;
 
+    void setup();
+    void emulation_step();
     void emulate_function(const std::string function_name);
+    void fill_function_arguments(const std::vector<FunctionArgument*> arguments);
 
 public:
     Emulator(Radare *r2, IApi *apis);

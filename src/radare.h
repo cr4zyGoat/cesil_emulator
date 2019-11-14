@@ -5,6 +5,8 @@
 #include <json/json.h>
 #include <r_socket.h>
 
+#include "instruction.h"
+#include "relocation.h"
 #include "utilities.h"
 
 class Radare
@@ -18,9 +20,15 @@ private:
     
 public:
     Radare(const std::string filename);
-    Json::Value get_current_instruction();
-    Json::Value get_relocations();
-    char* get_register(const std::string reg);
+    RelocationTable* get_relocations_table();
+    Instruction* get_current_instruction();
+    unsigned long get_current_address();
+    char* get_register_value(const std::string reg);
+    char* get_address_value(const std::string address);
+    char* get_address_value(const unsigned long address);
+    char* get_address_string(const std::string address);
+    char* get_address_string(const unsigned long address);
+    void emulation_step();
     void execute_return();
 
 };

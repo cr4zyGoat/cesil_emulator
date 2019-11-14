@@ -1,9 +1,5 @@
 #include "result.h"
 
-const int FunctionResult::BYTES = 0;
-const int FunctionResult::NUMBER = 1;
-const int FunctionResult::EXIT_PROCESS = 99;
-
 FunctionResult::FunctionResult(std::string target, const std::string value, const int type, bool to_reference) {
     this->target = target;
     this->value = value;

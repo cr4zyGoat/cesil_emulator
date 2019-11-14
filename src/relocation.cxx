@@ -28,3 +28,21 @@ RelocationTable::RelocationTable(const Json::Value data) {
         this->relocations.push_back(relocation);
     }
 };
+
+bool RelocationTable::contains_vaddr(const unsigned long address) {
+    for (Relocation *relocation : this->relocations) {
+        if (relocation->get_vaddr() == address) {
+            return true;
+        }
+    }
+    return false;
+};
+
+Relocation* RelocationTable::get_relocation_by_vaddr(const unsigned long address) {
+    for (Relocation *relocation : this->relocations) {
+        if  (relocation->get_vaddr() == address) {
+            return relocation;
+        }
+    }
+    return nullptr;
+};
