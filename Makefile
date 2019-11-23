@@ -33,7 +33,7 @@ all: compile
 # Compile the binary
 compile:
 	@echo "Creating binary files..."
-	$(CC) -std=$(STD) $(HEADERS) $(SOURCES) -o $(BINARY) $(CFLAGS) $(LIBS)
+	$(CC) -std=$(STD) -I $(SRCDIR) $(CFLAGS) $(LIBS) $(HEADERS) $(SOURCES) -o $(BINARY)
 	@echo "Binary executable $(BINARY) created ;)"
 
 # Compile & test the application
