@@ -25,3 +25,11 @@ std::string Instruction::get_esil() {
 unsigned long Instruction::get_offset() {
     return this->offset;
 };
+
+std::string Instruction::get_operation() {
+    return this->opcode.substr(0, this->opcode.find(' '));
+};
+
+bool Instruction::is_call() {
+    return this->get_operation() == "call";
+};

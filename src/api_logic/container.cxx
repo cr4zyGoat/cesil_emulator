@@ -14,7 +14,7 @@ bool Container::contains_function(const std::string function_name) {
     return false;
 };
 
-std::vector<FunctionArgument*> Container::get_function_arguments(const std::string function_name) {
+arguments_t Container::get_function_arguments(const std::string function_name) {
     for (IApi *api : this->apis) {
         if (api->contains_function(function_name)) 
             return api->get_function_arguments(function_name);
@@ -22,7 +22,7 @@ std::vector<FunctionArgument*> Container::get_function_arguments(const std::stri
     throw NOT_DEFINED_ARGUMENT_EXCEPTION;
 };
 
-std::vector<FunctionResult*> Container::emulate_function(const std::string function_name, const std::vector<FunctionArgument*> arguments) {
+results_t Container::emulate_function(const std::string function_name, const arguments_t arguments) {
     for (IApi *api : this->apis) {
         if (api->contains_function(function_name))
             return api->emulate_function(function_name, arguments);

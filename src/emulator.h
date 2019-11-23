@@ -20,7 +20,7 @@ private:
     void setup();
     void emulation_step();
     void emulate_function(const std::string function_name);
-    void fill_function_arguments(const std::vector<FunctionArgument*> arguments);
+    void fill_function_arguments(const arguments_t arguments);
 
 public:
     Emulator(Radare *r2, IApi *apis);

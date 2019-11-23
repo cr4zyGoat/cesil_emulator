@@ -12,6 +12,8 @@ private:
     std::string esil;
     unsigned long offset;
 
+    std::string get_operation();
+
 public:
     static const std::string INVALID_INSTRUCTION;
     static const unsigned long INVALID_ADDRESS;
@@ -21,6 +23,7 @@ public:
     std::string get_opcode();
     std::string get_esil();
     unsigned long get_offset();
+    bool is_call();
 
 };
 

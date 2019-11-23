@@ -19,20 +19,20 @@ void Emulator::run() {
     printf("EIP register value (hex): %s\n", this->r2->get_register_value("eip"));
     printf("EIP register value (dec): %ul\n", UTILITIES_H::hex2ulong(this->r2->get_register_value("eip")));
     printf("Seek address value: %s\n", this->r2->get_address_value("0x00401260"));
+    printf("\n");
 
     while (!this->emulation_finished) {
         this->current_instruction = this->r2->get_current_instruction();
         this->emulation_step();
 
-        // Testing
-        printf("Instruction %ul: %s\n", this->current_instruction->get_offset(), this->current_instruction->get_disasm().c_str());
+        if (this->current_instruction->is_call()) printf("%s\n", this->current_instruction->get_disasm().c_str()); // Testing
     }
 };
 
-void Emulator::fill_function_arguments(const std::vector<FunctionArgument*> arguments) {
+void Emulator::fill_function_arguments(const arguments_t arguments) {
     unsigned long address = UTILITIES_H::hex2ulong(this->r2->get_register_value("esp"));
     std::string value;
-    for (FunctionArgument* argument : arguments) {
+    for (FunctionArgument *argument : arguments) {
         address += 4;
         switch (argument->get_type()) {
         case FunctionArgument::STRING:
@@ -46,8 +46,8 @@ void Emulator::fill_function_arguments(const std::vector<FunctionArgument*> argu
 };
 
 void Emulator::emulate_function(const std::string function_name) {
-    std::vector<FunctionArgument*> arguments;
-    std::vector<FunctionResult*> results;
+    arguments_t arguments;
+    results_t results;
     if (this->apis->contains_function(function_name)) {
         arguments = this->apis->get_function_arguments(function_name);
         this->fill_function_arguments(arguments);
@@ -63,5 +63,6 @@ void Emulator::emulation_step() {
     if (this->relocations_table->contains_vaddr(address)) {
         std::string function = this->relocations_table->get_relocation_by_vaddr(address)->get_name();
         this->emulate_function(function);
+        printf("Emulation function: %s\n", function.c_str()); // Testing
     }
 };
